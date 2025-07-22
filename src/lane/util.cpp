@@ -45,7 +45,7 @@ namespace lane
 			return;
 		}
 
-		const int max_lines = 4;
+		const int max_lines = 6; // This is the maximum number of lanes we want to label
 		size_t split_idx = lanes.size();
 		// lane labels that is less than max_lines are valid
 		lanes_label.resize(lanes.size(), max_lines);
