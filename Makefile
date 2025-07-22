@@ -9,21 +9,14 @@ COMMON_FLAGS := -DCPU_ONLY
 CXXFLAGS := -std=c++11 -fopenmp
 LDFLAGS := -fopenmp -Wl,-rpath,./lib
 
-# You may switch different versions of opencv like this:
-# export PKG_CONFIG_PATH=/usr/local/opencv-4.1.1/lib/pkgconfig:$PKG_CONFIG_PATH 
-# then use `pkg-config opencv4 --cflags --libs` since `opencv4.pc` is found
-OPENCV = `pkg-config opencv --cflags --libs`
-LIB = $(OPENCV)
-BUILD_DIR := build
+# Use pkg-config for OpenCV 4
+OPENCV_FLAGS := $(shell pkg-config --cflags --libs opencv4)
 
-# make rules -------------------------------
-CXX ?= g++
-BUILD_DIR ?= ./build
+# Add OPENCV_FLAGS to CXXFLAGS and LDFLAGS accordingly
+# pkg-config --cflags includes -I/usr/include/opencv4
+CXXFLAGS += $(COMMON_FLAGS) $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) $(shell pkg-config --cflags opencv4)
+LDFLAGS += $(COMMON_FLAGS) $(foreach includedir,$(LIBRARY_DIRS),-L$(includedir)) $(shell pkg-config --libs opencv4)
 
-LIBRARIES += opencv_core opencv_highgui opencv_imgproc
-
-CXXFLAGS += $(COMMON_FLAGS) $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir))
-LDFLAGS +=  $(COMMON_FLAGS) $(foreach includedir,$(LIBRARY_DIRS),-L$(includedir)) $(foreach library,$(LIBRARIES),-l$(library))
 SRC_DIRS += $(shell find * -type d -exec bash -c "find {} -maxdepth 1 \( -name '*.cpp' -o -name '*.proto' \) | grep -q ." \; -print)
 CXX_SRCS += $(shell find src/ -name "*.cpp")
 CXX_TARGETS:=$(patsubst %.cpp, $(BUILD_DIR)/%.o, $(CXX_SRCS))
@@ -42,7 +35,7 @@ $(BUILD_DIR)/%.o: %.cpp | $(ALL_BUILD_DIRS)
 
 $(PROJECT_NAME): $(CXX_TARGETS)
 	@echo "CXX/LD" $@
-	@$(CXX) -o $@ $^ $(LDFLAGS) ${LIB}
+	@$(CXX) -o $@ $^ $(LDFLAGS)
 
 .PHONY: clean
 clean:

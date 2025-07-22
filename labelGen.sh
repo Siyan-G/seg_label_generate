@@ -1,18 +1,18 @@
 #!/bin/bash
 
 # modify CULane to yours
-CULane=~/works/SCNN/data/CULane
+CULane="/workspace/seg_label_generate/training_data"
 OutputPath=${CULane}/laneseg_label
 if [ ! -d $OutputPath ]; then
   mkdir $OutputPath
 fi
 ./seg_label_generate \
     -l ${CULane}/list/train.txt \
-    -m imgLabel \
+    -m trainList \
     -d $CULane \
     -w 16 \
-    -o $OutputPath \
-    -s
+    -o $OutputPath
+#    -s
 # explanation:
 # -l: image list file to process
 # -m: set mode to "imgLabel" or "trainList"
