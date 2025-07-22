@@ -28,9 +28,9 @@ void help()
 
 int main(int argc, char **argv)
 {
-	string list_file = "~/works/SCNN/data/CULane/list/train.txt";
-	string dir_im = "~/works/SCNN/data/CULane";
-	string output_path = "~/works/SCNN/data/CULane/laneseg_label";
+	string list_file = "/workspace/seg_label_generate/training_data/list/train.txt";
+	string dir_im = "/workspace/seg_label_generate/training_data/frames/";
+	string output_path = "/workspace/seg_label_generate/training_data/laneseg_label";
 	string output_file = "";
 	string mode = "imgLabel";   // set mode to "imgLabel" or "trainList"
 	bool is_show = false;
@@ -105,8 +105,8 @@ int main(int argc, char **argv)
 		seg_label_generator.readLabelFile(line_label_file);
 		if(count%100==0)
 			cout << count << ": " << im_name << endl;
-		if(is_show)
-			seg_label_generator.showLabels(im_name, width);
+		// if(is_show)
+		// 	seg_label_generator.showLabels(im_name, width);
 		else
 		{
 			// output result

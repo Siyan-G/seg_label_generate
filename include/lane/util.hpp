@@ -1,9 +1,9 @@
 #ifndef UTIL_HPP
 #define UTIL_HPP
 
-#include <opencv2/core/core.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv4/opencv2/core/core.hpp>
+#include <opencv4/opencv2/highgui/highgui.hpp>
+#include <opencv4/opencv2/imgproc/imgproc.hpp>
 #include <vector>
 #include <algorithm>
 #include <cmath>

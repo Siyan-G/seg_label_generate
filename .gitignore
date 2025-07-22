@@ -1,3 +1,4 @@
 build/
 all_list_file.txt
 training_data/
+seg_label_generate
