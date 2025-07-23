@@ -1,5 +1,5 @@
-frames/frame_000_40s.jpg
-frames/frame_000_57s.jpg
-frames/frame_003_77s.jpg
-frames/frame_004_23s.jpg
-frames/frame_005_83s.jpg
+/frames/frame_000_40s.jpg
+/frames/frame_000_57s.jpg
+/frames/frame_003_77s.jpg
+/frames/frame_004_23s.jpg
+/frames/frame_005_83s.jpg

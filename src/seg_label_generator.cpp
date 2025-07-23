@@ -275,7 +275,6 @@ void SegLabelGenerator::updateLabels(vector<vector<Point2f> > &lanes)
 			}
 
 		}
-	
 	}
 }
 
@@ -341,10 +340,7 @@ void SegLabelGenerator::showLabels(const string &im_name, int width, int wait_ti
 void SegLabelGenerator::outputimLabels(const string &output_path, const string &sub_im_name, int width, bool Flip)
 {
 	Mat im(im_height, im_width, CV_8UC1, Scalar(0));
-	const Scalar color_lines[8] = {
-		Scalar(255, 0, 0), Scalar(0, 255, 0), Scalar(255, 0, 255), Scalar(0, 0, 255),
-		Scalar(255, 255, 0), Scalar(0, 255, 255), Scalar(255, 128, 0), Scalar(128, 0, 255)
-	};
+	const Scalar color_lines[4] = {Scalar(255, 0, 0), Scalar(0, 255, 0), Scalar(255, 0, 255), Scalar(0, 0, 255)};
 
 	const Scalar color_black = Scalar(0, 0, 0);
 	const Scalar color_dark = Scalar(139, 139, 0);

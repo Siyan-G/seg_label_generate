@@ -1,0 +1,5 @@
+/frames/frame_000_40s.jpg /laneseg_label/frames/frame_000_40s.png 0 0 0 0
+/frames/frame_000_57s.jpg /laneseg_label/frames/frame_000_57s.png 0 0 1 1
+/frames/frame_003_77s.jpg /laneseg_label/frames/frame_003_77s.png 0 1 0 1
+/frames/frame_004_23s.jpg /laneseg_label/frames/frame_004_23s.png 0 1 1 1
+/frames/frame_005_83s.jpg /laneseg_label/frames/frame_005_83s.png 0 0 0 0

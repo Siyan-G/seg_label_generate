@@ -29,7 +29,7 @@ void help()
 int main(int argc, char **argv)
 {
 	string list_file = "/workspace/seg_label_generate/training_data/list/train.txt";
-	string dir_im = "/workspace/seg_label_generate/training_data/frames/";
+	string dir_im = "/workspace/seg_label_generate/training_data";
 	string output_path = "/workspace/seg_label_generate/training_data/laneseg_label";
 	string output_file = "";
 	string mode = "imgLabel";   // set mode to "imgLabel" or "trainList"
@@ -102,30 +102,30 @@ int main(int argc, char **argv)
 			continue;
 		string im_name = dir_im + sub_im_name;
 		string line_label_file = im_name.substr(0, im_name.find_last_of(".")) + ".lines.txt";
+		cout << "Processing: " << im_name << endl;
 		seg_label_generator.readLabelFile(line_label_file);
 		if(count%100==0)
 			cout << count << ": " << im_name << endl;
 		// if(is_show)
 		// 	seg_label_generator.showLabels(im_name, width);
+
+		// output result
+		if(mode == "imgLabel")
+		{
+			seg_label_generator.outputimLabels(output_path, sub_im_name, width, flip);
+		}
+		else if(mode == "trainList")
+		{
+			string segLabel_name = "/laneseg_label" + sub_im_name.substr(0, sub_im_name.find_last_of(".")) + ".png";
+			ofs_out_file<<sub_im_name<<' '<<segLabel_name;
+			cout << "Writing: " << segLabel_name << endl;
+			seg_label_generator.outputLabels(ofs_out_file);
+			ofs_out_file<<endl;
+		}
 		else
 		{
-			// output result
-			if(mode == "imgLabel")
-			{
-				seg_label_generator.outputimLabels(output_path, sub_im_name, width, flip);
-			}
-			else if(mode == "trainList")
-			{
-				string segLabel_name = "/laneseg_label_w16/" + sub_im_name.substr(0, sub_im_name.find_last_of(".")) + ".png";
-				ofs_out_file<<sub_im_name<<' '<<segLabel_name;
-				seg_label_generator.outputLabels(ofs_out_file);
-				ofs_out_file<<endl;
-			}
-			else
-			{
-				cerr << "illegal mode:" << mode << '!' << endl;
-				return 1;
-			}
+			cerr << "illegal mode:" << mode << '!' << endl;
+			return 1;
 		}
 	}
 

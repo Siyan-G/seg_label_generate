@@ -8,7 +8,7 @@ if [ ! -d $OutputPath ]; then
 fi
 ./seg_label_generate \
     -l ${CULane}/list/train.txt \
-    -m trainList \
+    -m imgLabel \
     -d $CULane \
     -w 16 \
     -o $OutputPath
