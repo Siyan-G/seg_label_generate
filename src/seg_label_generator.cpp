@@ -331,16 +331,17 @@ void SegLabelGenerator::showLabels(const string &im_name, int width, int wait_ti
 	}
 	resize(im, im, Size(820,295), 0, 0, INTER_NEAREST);
 
-	// imshow(window_name, im);
+	//imshow(window_name, im);
 	//namedWindow("origin", 1);
 	//imshow("origin", im2);
-	// waitKey(wait_time);
+	//waitKey(wait_time);
 }
 
 void SegLabelGenerator::outputimLabels(const string &output_path, const string &sub_im_name, int width, bool Flip)
 {
 	Mat im(im_height, im_width, CV_8UC1, Scalar(0));
-	const Scalar color_lines[4] = {Scalar(255, 0, 0), Scalar(0, 255, 0), Scalar(255, 0, 255), Scalar(0, 0, 255)};
+	const Scalar color_y_seq = Scalar(70, 120, 60);
+	Scalar color_lines[4] = {Scalar(1), Scalar(2), Scalar(3), Scalar(4)};
 
 	const Scalar color_black = Scalar(0, 0, 0);
 	const Scalar color_dark = Scalar(139, 139, 0);
@@ -426,7 +427,7 @@ void SegLabelGenerator::outputimLabels(const string &output_path, const string &
 
 double SegLabelGenerator::find_nearest_point(const vector<Point2f> &p_interp, const double y)
 {
-	double x = -1000;
+		double x = -1000;
 	double min_dis = 1000;
 	for(size_t n=0; n<p_interp.size(); n++)
 	{
